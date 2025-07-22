@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3.2 (Python 3.11.2 on win32)" generated="2025-07-22T10:47:44.716817" rpa="false" schemaversion="5">
+<suite id="s1" name="Download Report" source="C:\Users\Juan Torres\Desktop\rmcab-reports\download_report.robot">
+<test id="s1-t1" name="Descargar Reporte Excel Desde RMCAB" line="12">
+<kw name="Load Json From File" owner="JSONLibrary">
+<msg time="2025-07-22T10:47:44.935402" level="INFO">${config} = {'BaseUrl': 'http://rmcab.ambientebogota.gov.co', 'ReportPath': '/Report/GetMultiStationsReportNewAsync', 'StationId': 27, 'StationName': 'Bolivia', 'MonitorIds': ['S_27_1', 'S_27_2', 'S_27_4', 'S_27_...</msg>
+<var>${config}</var>
+<arg>${CONFIG_FILE}</arg>
+<doc>Load JSON from file.</doc>
+<status status="PASS" start="2025-07-22T10:47:44.935402" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-07-22T10:47:44.936355" level="INFO">${base_url} = http://rmcab.ambientebogota.gov.co</msg>
+<var>${base_url}</var>
+<arg>${config}</arg>
+<arg>BaseUrl</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-07-22T10:47:44.936355" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-07-22T10:47:44.936355" level="INFO">${path} = /Report/GetMultiStationsReportNewAsync</msg>
+<var>${path}</var>
+<arg>${config}</arg>
+<arg>ReportPath</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-07-22T10:47:44.936355" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-07-22T10:47:44.936355" level="INFO">${station_id} = 27</msg>
+<var>${station_id}</var>
+<arg>${config}</arg>
+<arg>StationId</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-07-22T10:47:44.936355" elapsed="0.001038"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-07-22T10:47:44.937393" level="INFO">${station_name} = Bolivia</msg>
+<var>${station_name}</var>
+<arg>${config}</arg>
+<arg>StationName</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-07-22T10:47:44.937393" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-07-22T10:47:44.937393" level="INFO">${monitor_ids} = ['S_27_1', 'S_27_2', 'S_27_4', 'S_27_5', 'S_27_6', 'S_27_7', 'S_27_8', 'S_27_10', 'S_27_13', 'S_27_14', 'S_27_15', 'S_27_16', 'S_27_18', 'S_27_19']</msg>
+<var>${monitor_ids}</var>
+<arg>${config}</arg>
+<arg>MonitorIds</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-07-22T10:47:44.937393" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-07-22T10:47:44.938355" level="INFO">${tb} = ['60']</msg>
+<var>${tb}</var>
+<arg>${config}</arg>
+<arg>TB</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-07-22T10:47:44.937393" elapsed="0.000962"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-07-22T10:47:44.938355" level="INFO">${totb} = 60</msg>
+<var>${totb}</var>
+<arg>${config}</arg>
+<arg>ToTB</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-07-22T10:47:44.938355" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-07-22T10:47:44.938355" level="INFO">${rtype} = Average</msg>
+<var>${rtype}</var>
+<arg>${config}</arg>
+<arg>ReportType</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-07-22T10:47:44.938355" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-07-22T10:47:44.939357" level="INFO">${first} = True</msg>
+<var>${first}</var>
+<arg>${config}</arg>
+<arg>First</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-07-22T10:47:44.939357" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-07-22T10:47:44.939357" level="INFO">${outdir} = ./downloads</msg>
+<var>${outdir}</var>
+<arg>${config}</arg>
+<arg>OutputDirectory</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-07-22T10:47:44.939357" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-07-22T10:47:44.939357" level="INFO">${from_date} = 2023-12-01</msg>
+<var>${from_date}</var>
+<arg>2023-12-01</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-07-22T10:47:44.939357" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-07-22T10:47:44.940394" level="INFO">${to_date} = 2023-12-03</msg>
+<var>${to_date}</var>
+<arg>2023-12-03</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-07-22T10:47:44.940394" elapsed="0.000000"/>
+</kw>
+<kw name="Convert Date To Ticks Keyword" owner="utils">
+<msg time="2025-07-22T10:47:44.944491" level="INFO">${from_ticks} = 638369856000000000</msg>
+<var>${from_ticks}</var>
+<arg>${from_date}</arg>
+<doc>Función expuesta como palabra clave en Robot Framework.
+Devuelve los ticks como string para usarlos en URLs.</doc>
+<status status="PASS" start="2025-07-22T10:47:44.941357" elapsed="0.003134"/>
+</kw>
+<kw name="Convert Date To Ticks Keyword" owner="utils">
+<msg time="2025-07-22T10:47:44.944491" level="INFO">${to_ticks} = 638371584000000000</msg>
+<var>${to_ticks}</var>
+<arg>${to_date}</arg>
+<doc>Función expuesta como palabra clave en Robot Framework.
+Devuelve los ticks como string para usarlos en URLs.</doc>
+<status status="PASS" start="2025-07-22T10:47:44.944491" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-07-22T10:47:44.945430" level="INFO">${monitor_ids_json} = ["S_27_1", "S_27_2", "S_27_4", "S_27_5", "S_27_6", "S_27_7", "S_27_8", "S_27_10", "S_27_13", "S_27_14", "S_27_15", "S_27_16", "S_27_18", "S_27_19"]</msg>
+<var>${monitor_ids_json}</var>
+<arg>json.dumps(${monitor_ids})</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-07-22T10:47:44.944491" elapsed="0.000939"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-07-22T10:47:44.945430" level="INFO">${station_name_json} = ["Bolivia"]</msg>
+<var>${station_name_json}</var>
+<arg>json.dumps(["${station_name}"])</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-07-22T10:47:44.945430" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-07-22T10:47:44.946430" level="INFO">${tb_json} = ["60"]</msg>
+<var>${tb_json}</var>
+<arg>json.dumps(${tb})</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-07-22T10:47:44.946430" elapsed="0.000000"/>
+</kw>
+<kw name="Create Directory" owner="OperatingSystem">
+<msg time="2025-07-22T10:47:44.946430" level="INFO" html="true">Directory '&lt;a href="file://C:\Users\Juan Torres\Desktop\rmcab-reports\downloads"&gt;C:\Users\Juan Torres\Desktop\rmcab-reports\downloads&lt;/a&gt;' already exists.</msg>
+<arg>${outdir}</arg>
+<doc>Creates the specified directory.</doc>
+<status status="PASS" start="2025-07-22T10:47:44.946430" elapsed="0.000000"/>
+</kw>
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-07-22T10:47:44.947467" level="INFO">Creating Session using : alias=rm, url=http://rmcab.ambientebogota.gov.co, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>rm</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-07-22T10:47:44.946430" elapsed="0.001037"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-07-22T10:47:44.948476" level="INFO">${params} = {'ListStationId': '[27]', 'ListMonitorIds': '["S_27_1", "S_27_2", "S_27_4", "S_27_5", "S_27_6", "S_27_7", "S_27_8", "S_27_10", "S_27_13", "S_27_14", "S_27_15", "S_27_16", "S_27_18", "S_27_19"]', 'FDat...</msg>
+<var>${params}</var>
+<arg>ListStationId=[${station_id}]</arg>
+<arg>ListMonitorIds=${monitor_ids_json}</arg>
+<arg>FDate=${from_ticks}</arg>
+<arg>TDate=${to_ticks}</arg>
+<arg>TB=${tb_json}</arg>
+<arg>ToTB=${totb}</arg>
+<arg>ReportType=${rtype}</arg>
+<arg>first=${first}</arg>
+<arg>ListStationsNames=${station_name_json}</arg>
+<arg>take=0</arg>
+<arg>skip=0</arg>
+<arg>page=1</arg>
+<arg>pageSize=0</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-07-22T10:47:44.947467" elapsed="0.001009"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2025-07-22T10:47:45.425444" level="INFO">GET Request : url=http://rmcab.ambientebogota.gov.co/Report/GetMultiStationsReportNewAsync?ListStationId=%5B27%5D&amp;ListMonitorIds=%5B%22S_27_1%22%2C+%22S_27_2%22%2C+%22S_27_4%22%2C+%22S_27_5%22%2C+%22S_27_6%22%2C+%22S_27_7%22%2C+%22S_27_8%22%2C+%22S_27_10%22%2C+%22S_27_13%22%2C+%22S_27_14%22%2C+%22S_27_15%22%2C+%22S_27_16%22%2C+%22S_27_18%22%2C+%22S_27_19%22%5D&amp;FDate=638369856000000000&amp;TDate=638371584000000000&amp;TB=%5B%2260%22%5D&amp;ToTB=60&amp;ReportType=Average&amp;first=True&amp;ListStationsNames=%5B%22Bolivia%22%5D&amp;take=0&amp;skip=0&amp;page=1&amp;pageSize=0 
+ path_url=/Report/GetMultiStationsReportNewAsync?ListStationId=%5B27%5D&amp;ListMonitorIds=%5B%22S_27_1%22%2C+%22S_27_2%22%2C+%22S_27_4%22%2C+%22S_27_5%22%2C+%22S_27_6%22%2C+%22S_27_7%22%2C+%22S_27_8%22%2C+%22S_27_10%22%2C+%22S_27_13%22%2C+%22S_27_14%22%2C+%22S_27_15%22%2C+%22S_27_16%22%2C+%22S_27_18%22%2C+%22S_27_19%22%5D&amp;FDate=638369856000000000&amp;TDate=638371584000000000&amp;TB=%5B%2260%22%5D&amp;ToTB=60&amp;ReportType=Average&amp;first=True&amp;ListStationsNames=%5B%22Bolivia%22%5D&amp;take=0&amp;skip=0&amp;page=1&amp;pageSize=0 
+ headers={'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2025-07-22T10:47:45.425444" level="INFO">GET Response : url=http://rmcab.ambientebogota.gov.co/Report/GetMultiStationsReportNewAsync?ListStationId=%5B27%5D&amp;ListMonitorIds=%5B%22S_27_1%22%2C+%22S_27_2%22%2C+%22S_27_4%22%2C+%22S_27_5%22%2C+%22S_27_6%22%2C+%22S_27_7%22%2C+%22S_27_8%22%2C+%22S_27_10%22%2C+%22S_27_13%22%2C+%22S_27_14%22%2C+%22S_27_15%22%2C+%22S_27_16%22%2C+%22S_27_18%22%2C+%22S_27_19%22%5D&amp;FDate=638369856000000000&amp;TDate=638371584000000000&amp;TB=%5B%2260%22%5D&amp;ToTB=60&amp;ReportType=Average&amp;first=True&amp;ListStationsNames=%5B%22Bolivia%22%5D&amp;take=0&amp;skip=0&amp;page=1&amp;pageSize=0 
+ status=200, reason=OK 
+ headers={'Date': 'Tue, 22 Jul 2025 15:47:44 GMT', 'Server': 'Microsoft-IIS/10.0', 'Cache-Control': 'private, s-maxage=0', 'Content-Type': 'application/json; charset=utf-8', 'X-AspNet-Version': '4.0.30319', 'X-AspNetMvc-Version': '4.0', 'X-Powered-By': 'ASP.NET', 'Content-Length': '17082', 'Set-Cookie': 'ASP.NET_SessionId=iqssjn4vnvemptejwfxxcrca; path=/; HttpOnly; SameSite=Lax', 'Keep-Alive': 'timeout=5, max=100', 'Connection': 'Keep-Alive'} 
+ body={"summary":[{"datetime":"Minimum","S_27_1":8.7,"S_27_2":"-","S_27_4":"-","S_27_5":"-","S_27_6":"-","S_27_7":"-","S_27_8":0.0,"S_27_10":"-","S_27_13":0.0,"S_27_14":"-","S_27_15":"-","S_27_16":"-","S_27_18":0.08,"S_27_19":0.2},{"datetime":"MinDate","S_27_1":"01-12-2023","S_27_2":"-","S_27_4":"-","S_27_5":"-","S_27_6":"-","S_27_7":"-","S_27_8":"30-11-2023","S_27_10":"-","S_27_13":"01-12-2023","S_27_14":"-","S_27_15":"-","S_27_16":"-","S_27_18":"01-12-2023","S_27_19":"01-12-2023"},{"datetime":"MinTime","S_27_1":"18:00","S_27_2":"-","S_27_4":"-","S_27_5":"-","S_27_6":"-","S_27_7":"-","S_27_8":"24:00","S_27_10":"-","S_27_13":"11:00","S_27_14":"-","S_27_15":"-","S_27_16":"-","S_27_18":"13:00","S_27_19":"05:00"},{"datetime":"Maximum","S_27_1":63.1,"S_27_2":"-","S_27_4":"-","S_27_5":"-","S_27_6":"-","S_27_7":"-","S_27_8":0.1,"S_27_10":"-","S_27_13":36.9,"S_27_14":"-","S_27_15":"-","S_27_16":"-","S_27_18":0.95,"S_27_19":19.4},{"datetime":"MaxDate","S_27_1":"02-12-2023","S_27_2":"-","S_27_4":"-","S_27_5":"-","S_27_6":"-","S_27_7":"-","S_27_8":"01-12-2023","S_27_10":"-","S_27_13":"30-11-2023","S_27_14":"-","S_27_15":"-","S_27_16":"-","S_27_18":"01-12-2023","S_27_19":"02-12-2023"},{"datetime":"MaxTime","S_27_1":"10:00","S_27_2":"-","S_27_4":"-","S_27_5":"-","S_27_6":"-","S_27_7":"-","S_27_8":"06:00","S_27_10":"-","S_27_13":"24:00","S_27_14":"-","S_27_15":"-","S_27_16":"-","S_27_18":"21:00","S_27_19":"16:00"},{"datetime":"Avg","S_27_1":38.7,"S_27_2":"-","S_27_4":"-","S_27_5":"-","S_27_6":"-","S_27_7":"-","S_27_8":0.0,"S_27_10":"-","S_27_13":18.4,"S_27_14":"-","S_27_15":"-","S_27_16":"-","S_27_18":0.41,"S_27_19":5.9},{"datetime":"Num","S_27_1":47,"S_27_2":"-","S_27_4":"-","S_27_5":"-","S_27_6":"-","S_27_7":"-","S_27_8":47,"S_27_10":"-","S_27_13":47,"S_27_14":"-","S_27_15":"-","S_27_16":"-","S_27_18":45,"S_27_19":45},{"datetime":"DataPrecent","S_27_1":95.9,"S_27_2":"-","S_27_4":"-","S_27_5":"-","S_27_6":"-","S_27_7":"-","S_27_8":95.9,"S_27_10":"-","S_27_13":95.9,"S_27_14":"-","S_27_15":"-","S_27_16":"-","S_27_18":91.8,"S_27_19":91.8},{"datetime":"STD","S_27_1":"14.9","S_27_2":"-","S_27_4":"-","S_27_5":"-","S_27_6":"-","S_27_7":"-","S_27_8":"0.0","S_27_10":"-","S_27_13":"8.4","S_27_14":"-","S_27_15":"-","S_27_16":"-","S_27_18":"0.2","S_27_19":"6.4"}],"Data":[{"datetime":"30-11-2023 24:00","S_27_1":58.5,"S_27_2":"----","S_27_4":"----","S_27_5":"----","S_27_6":"----","S_27_7":"----","S_27_8":0.0,"S_27_10":"----","S_27_13":36.9,"S_27_14":"----","S_27_15":"----","S_27_16":"----","S_27_18":0.41,"S_27_19":0.4},{"datetime":"01-12-2023 01:00","S_27_1":59.6,"S_27_2":"----","S_27_4":"----","S_27_5":"----","S_27_6":"----","S_27_7":"----","S_27_8":0.0,"S_27_10":"----","S_27_13":28.3,"S_27_14":"----","S_27_15":"----","S_27_16":"----","S_27_18":0.4,"S_27_19":0.6},{"datetime":"01-12-2023 02:00","S_27_1":49.7,"S_27_2":"----","S_27_4":"----","S_27_5":"----","S_27_6":"----","S_27_7":"----","S_27_8":0.0,"S_27_10":"----","S_27_13":21.2,"S_27_14":"----","S_27_15":"----","S_27_16":"----","S_27_18":0.3,"S_27_19":0.8},{"datetime":"01-12-2023 03:00","S_27_1":49.4,"S_27_2":"----","S_27_4":"----","S_27_5":"----","S_27_6":"----","S_27_7":"----","S_27_8":0.0,"S_27_10":"----","S_27_13":22.2,"S_27_14":"----","S_27_15":"----","S_27_16":"----","S_27_18":0.27,"S_27_19":0.5},{"datetime":"01-12-2023 04:00","S_27_1":49.8,"S_27_2":"----","S_27_4":"----","S_27_5":"----","S_27_6":"----","S_27_7":"----","S_27_8":0.0,"S_27_10":"----","S_27_13":23.2,"S_27_14":"----","S_27_15":"----","S_27_16":"----","S_27_18":0.27,"S_27_19":0.4},{"datetime":"01-12-2023 05:00","S_27_1":38.6,"S_27_2":"----","S_27_4":"----","S_27_5":"----","S_27_6":"----","S_27_7":"----","S_27_8":0.0,"S_27_10":"----","S_27_13":17.4,"S_27_14":"----","S_27_15":"----","S_27_16":"----","S_27_18":0.37,"S_27_19":0.2},{"datetime":"01-12-2023 06:00","S_27_1":43.2,"S_27_2":"----","S_27_4":"----","S_27_5":"----","S_27_6":"----","S_27_7":"----","S_27_8":0.1,"S_27_10":"----","S_27_13":22.1,"S_27_14":"----","S_27_15":"----","S_27_16":"----","S_27_18":0.47,"S_27_19":0.3},{"datetime":"01-12-2023 07:00","S_27_1":39.3,"S_27_2":"----","S_27_4":"----","S_27_5":"----","S_27_6":"----","S_27_7":"----","S_27_8":0.0,"S_27_10":"----","S_27_13":33.0,"S_27_14":"----","S_27_15":"----","S_27_16":"----","S_27_18":0.54,"S_27_19":1.3},{"datetime":"01-12-2023 08:00","S_27_1":56.0,"S_27_2":"----","S_27_4":"----","S_27_5":"----","S_27_6":"----","S_27_7":"----","S_27_8":0.0,"S_27_10":"----","S_27_13":31.3,"S_27_14":"----","S_27_15":"----","S_27_16":"----","S_27_18":0.49,"S_27_19":3.3},{"datetime":"01-12-2023 09:00","S_27_1":"----","S_27_2":"----","S_27_4":"----","S_27_5":"----","S_27_6":"----","S_27_7":"----","S_27_8":"----","S_27_10":"----","S_27_13":"----","S_27_14":"----","S_27_15":"----","S_27_16":"----","S_27_18":"----","S_27_19":"----"},{"datetime":"01-12-2023 10:00","S_27_1":"----","S_27_2":"----","S_27_4":"----","S_27_5":"----","S_27_6":"----","S_27_7":"----","S_27_8":"----","S_27_10":"----","S_27_13":"----","S_27_14":"----","S_27_15":"----","S_27_16":"----","S_27_18":"----","S_27_19":"----"},{"datetime":"01-12-2023 11:00","S_27_1":28.3,"S_27_2":"----","S_27_4":"----","S_27_5":"----","S_27_6":"----","S_27_7":"----","S_27_8":0.0,"S_27_10":"----","S_27_13":0.0,"S_27_14":"----","S_27_15":"----","S_27_16":"----","S_27_18":"----","S_27_19":"----"},{"datetime":"01-12-2023 12:00","S_27_1":33.0,"S_27_2":"----","S_27_4":"----","S_27_5":"----","S_27_6":"----","S_27_7":"----","S_27_8":0.0,"S_27_10":"----","S_27_13":11.7,"S_27_14":"----","S_27_15":"----","S_27_16":"----","S_27_18":"----","S_27_19":"----"},{"datetime":"01-12-2023 13:00","S_27_1":23.6,"S_27_2":"----","S_27_4":"----","S_27_5":"----","S_27_6":"----","S_27_7":"----","S_27_8":0.0,"S_27_10":"----","S_27_13":10.3,"S_27_14":"----","S_27_15":"----","S_27_16":"----","S_27_18":0.08,"S_27_19":15.7},{"datetime":"01-12-2023 14:00","S_27_1":16.7,"S_27_2":"----","S_27_4":"----","S_27_5":"----","S_27_6":"----","S_27_7":"----","S_27_8":0.0,"S_27_10":"----","S_27_13":8.5,"S_27_14":"----","S_27_15":"----","S_27_16":"----","S_27_18":0.09,"S_27_19":15.7},{"datetime":"01-12-2023 15:00","S_27_1":12.8,"S_27_2":"----","S_27_4":"----","S_27_5":"----","S_27_6":"----","S_27_7":"----","S_27_8":0.0,"S_27_10":"----","S_27_13":6.4,"S_27_14":"----","S_27_15":"----","S_27_16":"----","S_27_18":0.16,"S_27_19":14.4},{"datetime":"01-12-2023 16:00","S_27_1":9.8,"S_27_2":"----","S_27_4":"----","S_27_5":"----","S_27_6":"----","S_27_7":"----","S_27_8":0.0,"S_27_10":"----","S_27_13":5.1,"S_27_14":"----","S_27_15":"----","S_27_16":"----","S_27_18":0.09,"S_27_19":13.1},{"datetime":"01-12-2023 17:00","S_27_1":10.5,"S_27_2":"----","S_27_4":"----","S_27_5":"----","S_27_6":"----","S_27_7":"----","S_27_8":0.0,"S_27_10":"----","S_27_13":4.8,"S_27_14":"----","S_27_15":"----","S_27_16":"----","S_27_18":0.08,"S_27_19":12.3},{"datetime":"01-12-2023 18:00","S_27_1":8.7,"S_27_2":"----","S_27_4":"----","S_27_5":"----","S_27_6":"----","S_27_7":"----","S_27_8":0.0,"S_27_10":"----","S_27_13":4.5,"S_27_14":"----","S_27_15":"----","S_27_16":"----","S_27_18":0.35,"S_27_19":7.6},{"datetime":"01-12-2023 19:00","S_27_1":22.1,"S_27_2":"----","S_27_4":"----","S_27_5":"----","S_27_6":"----","S_27_7":"----","S_27_8":0.0,"S_27_10":"----","S_27_13":12.8,"S_27_14":"----","S_27_15":"----","S_27_16":"----","S_27_18":0.81,"S_27_19":4.2},{"datetime":"01-12-2023 20:00","S_27_1":35.1,"S_27_2":"----","S_27_4":"----","S_27_5":"----","S_27_6":"----","S_27_7":"----","S_27_8":0.0,"S_27_10":"----","S_27_13":10.9,"S_27_14":"----","S_27_15":"----","S_27_16":"----","S_27_18":0.85,"S_27_19":1.9},{"datetime":"01-12-2023 21:00","S_27_1":43.3,"S_27_2":"----","S_27_4":"----","S_27_5":"----","S_27_6":"----","S_27_7":"----","S_27_8":0.0,"S_27_10":"----","S_27_13":17.4,"S_27_14":"----","S_27_15":"----","S_27_16":"----","S_27_18":0.95,"S_27_19":0.8},{"datetime":"01-12-2023 22:00","S_27_1":53.3,"S_27_2":"----","S_27_4":"----","S_27_5":"----","S_27_6":"----","S_27_7":"----","S_27_8":0.0,"S_27_10":"----","S_27_13":24.0,"S_27_14":"----","S_27_15":"----","S_27_16":"----","S_27_18":0.9,"S_27_19":1.4},{"datetime":"01-12-2023 23:00","S_27_1":41.4,"S_27_2":"----","S_27_4":"----","S_27_5":"----","S_27_6":"----","S_27_7":"----","S_27_8":0.0,"S_27_10":"----","S_27_13":19.6,"S_27_14":"----","S_27_15":"----","S_27_16":"----","S_27_18":0.56,"S_27_19":0.4},{"datetime":"01-12-2023 24:00","S_27_1":48.4,"S_27_2":"----","S_27_4":"----","S_27_5":"----","S_27_6":"----","S_27_7":"----","S_27_8":0.0,"S_27_10":"----","S_27_13":16.8,"S_27_14":"----","S_27_15":"----","S_27_16":"----","S_27_18":0.43,"S_27_19":0.5},{"datetime":"02-12-2023 01:00","S_27_1":52.2,"S_27_2":"----","S_27_4":"----","S_27_5":"----","S_27_6":"----","S_27_7":"----","S_27_8":0.0,"S_27_10":"----","S_27_13":18.0,"S_27_14":"----","S_27_15":"----","S_27_16":"----","S_27_18":0.33,"S_27_19":0.9},{"datetime":"02-12-2023 02:00","S_27_1":51.7,"S_27_2":"----","S_27_4":"----","S_27_5":"----","S_27_6":"----","S_27_7":"----","S_27_8":0.0,"S_27_10":"----","S_27_13":14.1,"S_27_14":"----","S_27_15":"----","S_27_16":"----","S_27_18":0.34,"S_27_19":0.4},{"datetime":"02-12-2023 03:00","S_27_1":40.6,"S_27_2":"----","S_27_4":"----","S_27_5":"----","S_27_6":"----","S_27_7":"----","S_27_8":0.0,"S_27_10":"----","S_27_13":25.6,"S_27_14":"----","S_27_15":"----","S_27_16":"----","S_27_18":0.27,"S_27_19":0.4},{"datetime":"02-12-2023 04:00","S_27_1":50.2,"S_27_2":"----","S_27_4":"----","S_27_5":"----","S_27_6":"----","S_27_7":"----","S_27_8":0.0,"S_27_10":"----","S_27_13":23.7,"S_27_14":"----","S_27_15":"----","S_27_16":"----","S_27_18":0.3,"S_27_19":0.2},{"datetime":"02-12-2023 05:00","S_27_1":39.5,"S_27_2":"----","S_27_4":"----","S_27_5":"----","S_27_6":"----","S_27_7":"----","S_27_8":0.0,"S_27_10":"----","S_27_13":18.5,"S_27_14":"----","S_27_15":"----","S_27_16":"----","S_27_18":0.5,"S_27_19":0.3},{"datetime":"02-12-2023 06:00","S_27_1":44.5,"S_27_2":"----","S_27_4":"----","S_27_5":"----","S_27_6":"----","S_27_7":"----","S_27_8":0.0,"S_27_10":"----","S_27_1... (set the log level to DEBUG or TRACE to see the full content) 
+ </msg>
+<msg time="2025-07-22T10:47:45.426443" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>rm</arg>
+<arg>${path}</arg>
+<arg>params=${params}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-07-22T10:47:44.948476" elapsed="0.477967"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-07-22T10:47:45.427440" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-07-22T10:47:45.426443" elapsed="0.000997"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-07-22T10:47:45.428440" level="INFO">${content_type} = application/json; charset=utf-8</msg>
+<var>${content_type}</var>
+<arg>${response.headers}</arg>
+<arg>Content-Type</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-07-22T10:47:45.427440" elapsed="0.001000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-07-22T10:47:45.428440" level="INFO">${filename} = ./downloads/reporte_Bolivia_2023-12-01.xlsx</msg>
+<var>${filename}</var>
+<arg>${outdir}/reporte_${station_name}_${from_date}.xlsx</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-07-22T10:47:45.428440" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Save Response Body To File Keyword" owner="utils">
+<arg>${response}</arg>
+<arg>${filename}</arg>
+<status status="PASS" start="2025-07-22T10:47:45.430439" elapsed="0.001004"/>
+</kw>
+<arg>'${content_type}' == 'application/json'</arg>
+<arg>Log To Console</arg>
+<arg>No se encontraron datos para esta consulta. No se generará archivo.</arg>
+<arg>ELSE</arg>
+<arg>Save Response Body To File Keyword</arg>
+<arg>${response}</arg>
+<arg>${filename}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-07-22T10:47:45.429447" elapsed="0.001996"/>
+</kw>
+<doc>Descarga un archivo Excel del RMCAB usando parámetros de appsettings.json</doc>
+<status status="PASS" start="2025-07-22T10:47:44.933358" elapsed="0.498085"/>
+</test>
+<status status="PASS" start="2025-07-22T10:47:44.718859" elapsed="0.714581"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Download Report" id="s1" pass="1" fail="0" skip="0">Download Report</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
