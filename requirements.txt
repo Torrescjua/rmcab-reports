@@ -1,0 +1,16 @@
+attrs==25.3.0
+certifi==2025.7.14
+charset-normalizer==3.4.2
+idna==3.10
+jsonpath-ng==1.7.0
+jsonschema==4.25.0
+jsonschema-specifications==2025.4.1
+ply==3.11
+referencing==0.36.2
+requests==2.32.4
+robotframework==7.3.2
+robotframework-jsonlibrary==0.5
+robotframework-requests==0.9.7
+rpds-py==0.26.0
+typing_extensions==4.14.1
+urllib3==2.5.0
