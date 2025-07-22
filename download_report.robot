@@ -26,8 +26,8 @@ Descargar Reporte Excel Desde RMCAB
     ${outdir}=         Get From Dictionary    ${config}    OutputDirectory
 
     # Cambia estas fechas a las que quieras probar
-    ${from_date}=      Set Variable    2023-12-01
-    ${to_date}=        Set Variable    2023-12-03
+    ${from_date}=      Set Variable    2023-1-01
+    ${to_date}=        Set Variable    2023-12-31
 
     ${from_ticks}=     Convert Date To Ticks Keyword    ${from_date}
     ${to_ticks}=       Convert Date To Ticks Keyword    ${to_date}
