@@ -1,28 +1,35 @@
-from datetime import datetime, timezone
+import json
+from datetime import datetime, timedelta
 
-def convert_date_to_ticks(date_str):
+# Nota importante sobre ticks .NET:
+# El endpoint usa ticks de .NET (100 ns desde 0001-01-01).
+# Aquí calculamos ticks a partir de FECHAS LOCALES "naive" (sin convertir a UTC),
+# que es lo que coincide con tus ejemplos.
+# Si ves un desfase horario, cambia a la versión UTC comentada más abajo.
+
+_DOTNET_EPOCH = datetime(1, 1, 1)
+
+def to_dotnet_ticks(dt_str: str, tz: str = "America/Bogota") -> int:
     """
-    Convierte una fecha (YYYY-MM-DD) a ticks de .NET (100ns desde 0001-01-01)
+    dt_str: 'YYYY-MM-DD HH:MM' (hora local). 
+    Retorna ticks .NET como entero.
     """
-    dt = datetime.strptime(date_str, "%Y-%m-%d")
-    epoch = datetime(1, 1, 1, tzinfo=timezone.utc)
-    delta = dt.replace(tzinfo=timezone.utc) - epoch
-    ticks = int(delta.total_seconds() * 10**7)
+    dt = datetime.strptime(dt_str, "%Y-%m-%d %H:%M")  # naive local
+    delta = dt - _DOTNET_EPOCH
+    ticks = int(delta.total_seconds() * 10_000_000)
     return ticks
 
-def convert_date_to_ticks_keyword(date_str):
+def ticks_to_iso(ticks: int, tz: str = "America/Bogota") -> str:
     """
-    Función expuesta como palabra clave en Robot Framework.
-    Devuelve los ticks como string para usarlos en URLs.
+    Convierte ticks .NET a 'YYYY-MM-DD HH:MM'.
+    (Solo para armar nombres de archivo legibles)
     """
-    return str(convert_date_to_ticks(date_str))
+    dt = _DOTNET_EPOCH + timedelta(microseconds=ticks / 10)
+    return dt.strftime("%Y-%m-%d %H:%M")
 
-def save_response_body_to_file(response, filename):
+def dumps_list_as_string(py_list) -> str:
     """
-    Guarda el contenido de una respuesta (objeto de requests) en un archivo binario.
+    Devuelve un string JSON del tipo ["A","B","C"].
+    Requests/urllib lo url-encodea correctamente en la query.
     """
-    with open(filename, 'wb') as f:
-        f.write(response.content)
-
-def Save_Response_Body_To_File_Keyword(response, filename):
-    return save_response_body_to_file(response, filename)
+    return json.dumps(py_list, ensure_ascii=False)
