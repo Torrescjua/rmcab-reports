@@ -36,7 +36,7 @@ cd rmcab-reports
 
 ```bash
 python -m venv .venv
-source .venv/Scripts/activate     # Windows
+source .venv/Scripts/activate     # Linux
 ```
 
 3. Instala dependencias:

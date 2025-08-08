@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 import pandas as pd
 import os, json, re, logging, argparse
 from typing import Dict, Any, List, Tuple
