@@ -49,6 +49,7 @@ pip install -r requirements.txt
 
 ```bash
 robot download_report.robot
+python .\convertir_excel.py  downloads --code-map config/code_title_map.json
 ```
 
 ---
