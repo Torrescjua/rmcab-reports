@@ -1,11 +1,17 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 import pandas as pd
 import os, json, re, logging, argparse
 from typing import Dict, Any, List, Tuple
+from datetime import datetime, timedelta
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
+# dd-mm-YYYY HH:MM (acepta también 24:MM, que luego normalizamos)
 HORA_RE = re.compile(r"\d{2}-\d{2}-\d{4} \d{2}:\d{2}")
 CODE_RE = re.compile(r"^S_(\d+)_(\d+)$")  # S_<station>_<varId>
+DT_RE   = re.compile(r"^(\d{2})-(\d{2})-(\d{4}) (\d{2}):(\d{2})$")
 
 # Mapa genérico por varId (opcional como fallback)
 VAR_MAP_DEFAULT: Dict[str, Dict[str, str]] = {
@@ -25,6 +31,27 @@ VAR_MAP_DEFAULT: Dict[str, Dict[str, str]] = {
     "19": {"label": "OZONO",         "unit": "ppb"}
 }
 
+def normalize_datetime_string(s: str) -> str:
+    """
+    Convierte 'dd-mm-YYYY 24:MM' → 'dd-mm-YYYY+1 00:MM'.
+    Si es una hora normal (00–23), la deja igual.
+    Si no matchea el patrón, la devuelve tal cual.
+    """
+    m = DT_RE.fullmatch(s)
+    if not m:
+        return s
+
+    d, mo, y = int(m.group(1)), int(m.group(2)), int(m.group(3))
+    h, mi = int(m.group(4)), int(m.group(5))
+
+    if h == 24:
+        # pasar al día siguiente con 00:MM
+        dt = datetime(y, mo, d, 0, mi) + timedelta(days=1)
+    else:
+        dt = datetime(y, mo, d, h, mi)
+
+    return dt.strftime("%d-%m-%Y %H:%M")
+
 def load_code_title_map(path: str) -> Tuple[Dict[str, Dict[str, str]], Dict[str, str]]:
     """
     Devuelve:
@@ -41,9 +68,10 @@ def load_code_title_map(path: str) -> Tuple[Dict[str, Dict[str, str]], Dict[str,
     for sid, entry in stations.items():
         station_names[str(sid)] = entry.get("name", str(sid))
         for code, meta in (entry.get("codes") or {}).items():
-            # normaliza claves
-            code_map[str(code)] = {"label": meta.get("label", str(code)),
-                                   "unit": meta.get("unit", "")}
+            code_map[str(code)] = {
+                "label": meta.get("label", str(code)),
+                "unit":  meta.get("unit", "")
+            }
     return code_map, station_names
 
 def build_column_name(code: str, code_map: Dict[str, Dict[str, str]],
@@ -59,13 +87,9 @@ def build_column_name(code: str, code_map: Dict[str, Dict[str, str]],
         label = mapping["label"]
         unit = mapping.get("unit") or ""
     else:
-        # sin mapeo: dejar código como label
         label, unit = code, ""
 
-    if include_unit and unit:
-        label_unit = f"{label} [{unit}]"
-    else:
-        label_unit = label
+    label_unit = f"{label} [{unit}]" if (include_unit and unit) else label
 
     if col_prefix == "id" and st_id:
         return f"{st_id} - {label_unit}"
@@ -90,28 +114,24 @@ def rename_columns_by_code(df: pd.DataFrame,
         new_name = None
         if col in code_map:
             new_name = build_column_name(col, code_map, station_names, include_unit, col_prefix)
-        else:
-            # ¿Intentar fallback por varId?
-            if fallback_varid:
-                m = CODE_RE.match(col)
-                if m:
-                    var_id = m.group(2)
-                    info = VAR_MAP_DEFAULT.get(var_id)
-                    if info:
-                        base = info["label"]
-                        if include_unit and info.get("unit"):
-                            base = f"{base} [{info['unit']}]"
-                        # prefijo de estación si se pidió
-                        st_id = m.group(1)
-                        if col_prefix == "id" and st_id:
-                            new_name = f"{st_id} - {base}"
-                        elif col_prefix == "name" and st_id:
-                            new_name = f"{station_names.get(st_id, st_id)} - {base}"
-                        else:
-                            new_name = base
+        elif fallback_varid:
+            m = CODE_RE.match(col)
+            if m:
+                var_id = m.group(2)
+                info = VAR_MAP_DEFAULT.get(var_id)
+                if info:
+                    base = info["label"]
+                    if include_unit and info.get("unit"):
+                        base = f"{base} [{info['unit']}]"
+                    st_id = m.group(1)
+                    if col_prefix == "id" and st_id:
+                        new_name = f"{st_id} - {base}"
+                    elif col_prefix == "name" and st_id:
+                        new_name = f"{station_names.get(st_id, st_id)} - {base}"
+                    else:
+                        new_name = base
 
         if not new_name:
-            # deja el original si no hay mapeo
             new_name = col
 
         # garantizar unicidad
@@ -148,15 +168,26 @@ def json_to_csv(input_json: str, out_dir: str | None,
         logging.warning(f"Sin filas válidas en {input_json}")
         return
 
+    # 🔧 Normalizar '24:MM' → '00:MM' del día siguiente
+    for r in rows:
+        dt = r.get("datetime")
+        if isinstance(dt, str):
+            r["datetime"] = normalize_datetime_string(dt)
+
     df = pd.DataFrame(rows).replace({"----": pd.NA, "-": pd.NA})
 
-    # Renombrar por código completo usando el JSON
+    # Orden cronológico por timestamp ya normalizado
+    if "datetime" in df.columns:
+        df["_ts"] = pd.to_datetime(df["datetime"], format="%d-%m-%Y %H:%M", errors="coerce")
+        df = df.sort_values("_ts").drop(columns=["_ts"])
+
+    # Renombrar por código completo usando el JSON (y fallback opcional por varId)
     df = rename_columns_by_code(df, code_map, station_names,
                                 include_unit=include_unit,
                                 col_prefix=col_prefix,
                                 fallback_varid=fallback_varid)
 
-    # No imponemos un orden global: dejamos 'datetime' primero y el resto como vienen
+    # 'datetime' primero y el resto como vengan (sin orden global)
     cols = list(df.columns)
     if "datetime" in cols:
         cols = ["datetime"] + [c for c in cols if c != "datetime"]
@@ -170,7 +201,7 @@ def json_to_csv(input_json: str, out_dir: str | None,
     logging.info(f"✅ CSV: {out_path} ({len(df)} filas, {len(df.columns)} cols)")
 
 def parse_args():
-    ap = argparse.ArgumentParser(description="RMCAB JSON (Data) → CSV usando mapeo por código completo S_<station>_<varId>")
+    ap = argparse.ArgumentParser(description="RMCAB JSON (Data) → CSV usando mapeo por código completo S_<station>_<varId> y normalización de 24:00")
     ap.add_argument("input", help="Archivo JSON o carpeta con .json")
     ap.add_argument("-o", "--out-dir", default=None, help="Directorio de salida (por defecto, el mismo del input)")
     ap.add_argument("--code-map", default="config/code_title_map.json",
