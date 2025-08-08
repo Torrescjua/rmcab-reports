@@ -52,6 +52,22 @@ robot download_report.robot
 python .\convertir_excel.py  downloads --code-map config/code_title_map.json
 ```
 
+5. Comandos para la conversión de archvios
+
+```bash
+# Convertir un archivo con mapeo por código (Bolivia+Guaymaral):
+python rmcab_json_to_csv.py downloads/27_Bolivia_2025-08-07.json --code-map config/code_title_map.json
+
+# Toda la carpeta, prefijando nombre de estación para evitar duplicados (PM10, PM2.5, etc.)
+python rmcab_json_to_csv.py downloads --code-map config/code_title_map.json --col-prefix name
+
+# Igual pero sin unidades en los encabezados
+python rmcab_json_to_csv.py downloads --code-map config/code_title_map.json --col-prefix id --labels-only
+
+# Si tienes códigos fuera del JSON y quieres un intento por varId:
+python rmcab_json_to_csv.py downloads --code-map config/code_title_map.json --fallback-varid
+```
+
 ---
 
 ## 🛠 Configuración
